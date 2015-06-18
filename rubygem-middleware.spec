@@ -2,7 +2,7 @@
 
 Name: rubygem-%{gem_name}
 Version: 0.1.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Generalized implementation of the middleware abstraction for Ruby
 Group: Development/Languages
 License: MIT
@@ -82,6 +82,9 @@ popd
 %exclude %{gem_instdir}/spec
 
 %changelog
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
