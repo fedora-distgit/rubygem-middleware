@@ -7,9 +7,9 @@ Summary: Generalized implementation of the middleware abstraction for Ruby
 License: MIT
 URL: https://github.com/mitchellh/middleware
 Source0: https://rubygems.org/gems/%{gem_name}-%{version}.gem
-# Patch to fix the test suite, cherry-picked from upstream's master Git branch.
-# Not released in 0.1.0.
-Patch0: rubygem-middleware-0.1.0-tests.patch
+# Fix rspec warnings
+# https://github.com/mitchellh/middleware/pull/15/commits/f559ee1a5fbc625b3a629f64d03f4ce249ea2fa0
+patch0: rubygem-middleware-0.1.0-update-rspec.patch
 BuildRequires: ruby
 BuildRequires: ruby(release)
 BuildRequires: rubygems-devel
@@ -67,7 +67,7 @@ popd
 %{gem_instdir}/%{gem_name}.gemspec
 
 %changelog
-* Fri Nov 13 01:36:04 CET 2020 Pavel Valena <pvalena@redhat.com> - 0.1.0-9
+* Thu Aug 12 2021 Pavel Valena <pvalena@redhat.com> - 0.1.0-9
 - Unretire package.
 
 * Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.0-8

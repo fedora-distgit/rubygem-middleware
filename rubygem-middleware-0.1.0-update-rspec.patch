@@ -1,0 +1,45 @@
+From f559ee1a5fbc625b3a629f64d03f4ce249ea2fa0 Mon Sep 17 00:00:00 2001
+From: OKURA Masafumi <masafumi.o1988@gmail.com>
+Date: Wed, 4 Aug 2021 17:19:14 +0900
+Subject: [PATCH] Upgrade RSpec to latest
+
+RSpec 2.8 is quite old and its rake task is not compatible to
+latest Rake.
+There are some modifications to suppress deprecation warnings.
+---
+ middleware.gemspec             | 6 +++---
+ spec/middleware/runner_spec.rb | 2 +-
+ spec/setup.rb                  | 4 +++-
+ 3 files changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/spec/middleware/runner_spec.rb b/spec/middleware/runner_spec.rb
+index 12e34e7..5fc370f 100644
+--- a/spec/middleware/runner_spec.rb
++++ b/spec/middleware/runner_spec.rb
+@@ -88,7 +88,6 @@ describe Middleware::Runner do
+   end
+
+   it "should raise an error if an invalid middleware is given" do
+-    expect { described_class.new([27]) }.to
+-      raise_error
++    expect { described_class.new([27]) }.to raise_error(NameError)
+   end
+ end
+diff --git a/spec/setup.rb b/spec/setup.rb
+index 6414e87..709e714 100644
+--- a/spec/setup.rb
++++ b/spec/setup.rb
+@@ -1,5 +1,4 @@
+ require "rubygems"
+-require "rspec/autorun"
+ 
+ # Do not buffer output
+ $stdout.sync = true
+@@ -7,4 +6,7 @@
+ 
+ # Configure RSpec
+ RSpec.configure do |c|
++  c.expect_with :rspec do |expectations|
++    expectations.syntax = [:should, :expect] # Both syntax are used so we need to explicitly set this to suppress warnings
++  end
+ end
